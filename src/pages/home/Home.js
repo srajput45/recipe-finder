@@ -1,5 +1,5 @@
 import React, {Component} from  'react';
-import './home.css';
+import './Home.css';
 import Header from '../../common/header/Header'
 import Search from '../../common/search/Search'
 
