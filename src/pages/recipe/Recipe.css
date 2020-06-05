@@ -1,0 +1,64 @@
+.recipe{
+    width: 100%;
+    height: 100vh;
+    background-color: skyblue;
+}
+button{
+    float: right;
+}
+.details{
+    width: 95%;
+    height: 80%;
+    margin: 30px;
+    border: 1px solid black;
+    background-color: #d1c4e9;
+}
+.dishImage{
+    height: 350px;
+    width: 350px;
+    border: 3px solid black;
+    margin-left: 80px;
+}
+.headding{
+    text-align: center;
+    padding: 15px;
+    background-color: #ffecb3;
+}
+.mealName{
+    font-weight: bold;
+    font-size: larger;
+    color: gray;
+}
+.left{
+    width: 35%;
+}
+.right{
+    padding-left: 10px;
+}
+.bold{
+    font-weight: bold ;
+    font-style: italic;
+}
+.container{
+    display: flex;
+    padding-top: 30px;
+}
+.ingredients{
+    width: 900px;
+    height: 200px;
+    background-color: aliceblue;
+    overflow: auto;
+}
+.instructions{
+    width: 900px;
+    height: 150px;
+    overflow: auto;
+    background-color: #e0e0e0;
+    text-align: center;
+}
+.recipeInstructions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

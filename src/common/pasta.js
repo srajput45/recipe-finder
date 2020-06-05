@@ -1,5 +1,4 @@
- let meals = [
-       {
+ let meals = {
           "idMeal":"52777",
           "strMeal":"Mediterranean Pasta Salad",
           "strDrinkAlternate":null,
@@ -52,7 +51,7 @@
           "strSource":"https:\/\/thelemonsqueezy.com\/recipe\/mediterranean-pasta-salad\/",
           "dateModified":null
        }
-    ]
+export default meals;
 
  /*
  let genres = [
