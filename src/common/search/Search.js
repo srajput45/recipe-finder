@@ -12,19 +12,17 @@ class Search extends Component{
     }
     dishHandler = (e) =>{
         this.setState({dish: e.target.value});
-        //console.log(this.state.dish);
     }
     recipeHandler = () => {
         ReactDOM.render(<Recipe  dish = {this.state.dish} />, document.getElementById('root'));
-        //console.log("shubham " + this.state.dish)
     }
     render(){
         return(
             <div>
                 <div className='search'>
                     {
-                        this.props.searchDish === 'true' ? <input type="text" dish={this.state.dish} onChange={this.dishHandler} /> : 
-                        <input type="text" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
+                        this.props.searchDish === 'true' ? <input className="searchBar" type="text" dish={this.state.dish} onChange={this.dishHandler} /> : 
+                        <input type="text" className="searchBar" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
                     }
                     
                     <button onClick={() => this.recipeHandler()}>Get Ingredients</button>

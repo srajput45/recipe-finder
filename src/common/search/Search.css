@@ -11,6 +11,8 @@ input{
     border-radius: 3px;
     border: 1px solid black;
     margin-right: 5%;
+    text-align: center;
+    justify-content: center;
 }
 button{
     height: 40px;
