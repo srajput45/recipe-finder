@@ -7,6 +7,7 @@ class Recipe extends Component{
     constructor(){
         super();
         this.state = {
+            dataFound: 0,
             dishDetail: [{}]
         }
     }
@@ -16,12 +17,13 @@ class Recipe extends Component{
         let that = this;
         xhr.addEventListener("readystatechange", function(){
             if(this.readyState === 4){
-                console.log(JSON.parse(this.responseText));
-                that.setState({dishDetail : JSON.parse(this.responseText).meals[0]});
-                console.log(that.state.dishDetail)
+                if(JSON.parse(this.responseText).meals != null){
+                    console.log(JSON.parse(this.responseText));
+                    that.setState({dishDetail : JSON.parse(this.responseText).meals[0], dataFound: 1});
+                    console.log(that.state.dishDetail)
+                }
             }
         })
-
         xhr.open("GET","https://cors-anywhere.herokuapp.com/https://www.themealdb.com/api/json/v1/1/search.php?s="+this.props.dish);
         xhr.setRequestHeader("Cache-Cotrol", "no-cache");
         xhr.send(data);
@@ -34,39 +36,42 @@ class Recipe extends Component{
                 <div className='recipe'>
                     <Header />
                     <Search searchDish = "true" />
-                    <div className="details">
-                        <div className='headding'>
-                            <span className='mealName' onClick={() => this.nameClickHandler(this.state.dishDetail.strSource)}>{this.state.dishDetail.strMeal}</span> 
-                            <button>Like</button>
-                        </div>
-                        <div className='container'>
-                            <div className="left">
-                                <img src={this.state.dishDetail.strMealThumb}  className='dishImage'/>
+                    {
+                        this.state.dataFound == 1 ?
+                            (<div className="details">
+                            <div className='headding'>
+                                <span className='mealName' onClick={() => this.nameClickHandler(this.state.dishDetail.strSource)}>{this.state.dishDetail.strMeal}</span> 
+                                <button>Like</button>
                             </div>
-                            <div className="right">
-                                <Typography>
-                                    <span className='bold' >Category of the meal - </span>{this.state.dishDetail.strCategory} 
-                                </Typography>
-                                <Typography>
-                                    <span className='bold' >Area of the meal - </span>{this.state.dishDetail.strArea} 
-                                </Typography><br></br>
-                                <Typography>
-                                    <span className='bold' >ingredients</span>
-                                </Typography>
-                                <div className='ingredients'>
-                                    {this.props.dish}
-                                </div><br />
-                                <div className='recipeInstructions'>
+                            <div className='container'>
+                                <div className="left">
+                                    <img src={this.state.dishDetail.strMealThumb}  className='dishImage'/>
+                                </div>
+                                <div className="right">
                                     <Typography>
-                                        <span className='bold' >Recipes</span>
+                                        <span className='bold' >Category of the meal - </span>{this.state.dishDetail.strCategory} 
                                     </Typography>
-                                    <p className='instructions'>
-                                        {this.state.dishDetail.strInstructions}
-                                    </p>
+                                    <Typography>
+                                        <span className='bold' >Area of the meal - </span>{this.state.dishDetail.strArea} 
+                                    </Typography><br></br>
+                                    <Typography>
+                                        <span className='bold' >ingredients</span>
+                                    </Typography>
+                                    <div className='ingredients'>
+                                        {this.props.dish}
+                                    </div><br />
+                                    <div className='recipeInstructions'>
+                                        <Typography>
+                                            <span className='bold' >Recipes</span>
+                                        </Typography>
+                                        <p className='instructions'>
+                                            {this.state.dishDetail.strInstructions}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>):(<div className='text'>No Data has been received</div>)
+                    }    
                 </div>
         )
     }

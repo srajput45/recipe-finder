@@ -1,8 +1,9 @@
 .recipe{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: skyblue;
-    overflow: hidden; 
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 button{
     float: right;
@@ -19,6 +20,13 @@ button{
     width: 350px;
     border: 3px solid black;
     margin-left: 80px;
+}
+.text{
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+    padding-top: 20px;
+    font-weight: bold;
 }
 .headding{
     text-align: center;
