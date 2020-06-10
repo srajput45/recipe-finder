@@ -3,12 +3,14 @@ import './Recipe.css';
 import Header from '../../common/header/Header'
 import Search from '../../common/search/Search'
 import Typography from '@material-ui/core/Typography'
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 class Recipe extends Component{
     constructor(){
         super();
         this.state = {
             dataFound: 0,
-            dishDetail: [{}]
+            dishDetail: [{}],
+            color : 'black'
         }
     }
     componentWillMount(){
@@ -31,6 +33,13 @@ class Recipe extends Component{
     nameClickHandler = (url) => {
         window.location = url;
     }
+    likeClickHandler = () => {
+        if(this.state.color == 'black'){
+            this.setState({color : 'red'})
+        }else{
+            this.setState({color : 'black'})
+        }
+    }
     render(){
         return(
                 <div className='recipe'>
@@ -41,7 +50,12 @@ class Recipe extends Component{
                             (<div className="details">
                             <div className='headding'>
                                 <span className='mealName' onClick={() => this.nameClickHandler(this.state.dishDetail.strSource)}>{this.state.dishDetail.strMeal}</span> 
-                                <button>Like</button>
+                                <div className='like'>
+                                    <FavoriteBorderOutlinedIcon
+                                            className={this.state.color}
+                                            onClick={() => this.likeClickHandler()}
+                                    />
+                                </div>
                             </div>
                             <div className='container'>
                                 <div className="left">
@@ -58,7 +72,7 @@ class Recipe extends Component{
                                         <span className='bold' >ingredients</span>
                                     </Typography>
                                     <div className='ingredients'>
-                                        {this.props.dish}
+                                        
                                     </div><br />
                                     <div className='recipeInstructions'>
                                         <Typography>
