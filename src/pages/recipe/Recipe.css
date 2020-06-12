@@ -18,6 +18,9 @@
     border: 3px solid black;
     margin-left: 80px;
 }
+ul{
+    list-style-type: none;
+}
 .text{
     text-align: center;
     align-items: center;
@@ -56,8 +59,10 @@
 .ingredients{
     width: 900px;
     height: 250px;
-    background-color: aliceblue;
+    background-color: #e0e0e0;
     overflow: auto;
+    display: flex;
+    flex-direction: row;
 }
 .instructions{
     width: 900px;

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Home from './pages/home/Home';
-import Recipe from './pages/recipe/Recipe'
 
 ReactDOM.render(
   <Home />,

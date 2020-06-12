@@ -20,9 +20,7 @@ class Recipe extends Component{
         xhr.addEventListener("readystatechange", function(){
             if(this.readyState === 4){
                 if(JSON.parse(this.responseText).meals != null){
-                    console.log(JSON.parse(this.responseText));
                     that.setState({dishDetail : JSON.parse(this.responseText).meals[0], dataFound: 1});
-                    console.log(that.state.dishDetail)
                 }
             }
         })
@@ -34,7 +32,7 @@ class Recipe extends Component{
         window.location = url;
     }
     likeClickHandler = () => {
-        if(this.state.color == 'black'){
+        if(this.state.color === 'black'){
             this.setState({color : 'red'})
         }else{
             this.setState({color : 'black'})
@@ -46,7 +44,7 @@ class Recipe extends Component{
                     <Header />
                     <Search searchDish = "true" />
                     {
-                        this.state.dataFound == 1 ?
+                        this.state.dataFound === 1 ?
                             (<div className="details">
                             <div className='headding'>
                                 <span className='mealName' onClick={() => this.nameClickHandler(this.state.dishDetail.strSource)}>{this.state.dishDetail.strMeal}</span> 
@@ -59,7 +57,7 @@ class Recipe extends Component{
                             </div>
                             <div className='container'>
                                 <div className="left">
-                                    <img src={this.state.dishDetail.strMealThumb}  className='dishImage'/>
+                                    <img src={this.state.dishDetail.strMealThumb} alt='Dish thumbnail' className='dishImage'/>
                                 </div>
                                 <div className="right">
                                     <Typography>
@@ -69,10 +67,27 @@ class Recipe extends Component{
                                         <span className='bold' >Area of the meal - </span>{this.state.dishDetail.strArea} 
                                     </Typography><br></br>
                                     <Typography>
-                                        <span className='bold' >ingredients</span>
+                                        <span className='bold' >Ingredients</span>
                                     </Typography>
                                     <div className='ingredients'>
-                                        
+                                        <div className='ingName'>
+                                            <ul>
+                                                {Object.keys(this.state.dishDetail).map((attr) => {
+                                                    return (attr.includes("strIngredient")) && (this.state.dishDetail[attr])
+                                                    &&   (this.state.dishDetail[attr] !== "")
+                                                    && <li key = {attr}>{this.state.dishDetail[attr]} ---- </li>
+                                                })}
+                                            </ul>
+                                        </div>
+                                        <div className='ingQuant'>
+                                            <ul>
+                                                {Object.keys(this.state.dishDetail).map((attr) => {
+                                                    return (attr.includes("strMeasure")) && (this.state.dishDetail[attr])
+                                                    &&   (this.state.dishDetail[attr] !== "")
+                                                    && <li key = {attr}>{this.state.dishDetail[attr]}</li>
+                                                })}
+                                            </ul>
+                                        </div>
                                     </div><br />
                                     <div className='recipeInstructions'>
                                         <Typography>

@@ -20,12 +20,14 @@ class Search extends Component{
         return(
             <div>
                 <div className='search'>
-                    {/*
-                        this.props.searchDish === 'true' ? <input className="searchBar" type="text" dish={this.state.dish} onChange={this.dishHandler} /> : 
+                    {
+                        this.props.searchDish === 'true' ? <input className="searchBar" type="text" dish={this.state.dish} onChange={this.dishHandler} value={this.state.dish} /> : 
                         <input type="text" className="searchBar" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
-                    */}
+                    }
                     
-                    <input type="text" className="searchBar" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
+                    {
+                        //<input type="text" className="searchBar" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
+                    }
                     <button onClick={() => this.recipeHandler()}>Get Ingredients</button>
                 </div>
             </div>
