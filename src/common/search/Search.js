@@ -2,32 +2,28 @@ import React, {Component} from  'react';
 import ReactDOM from 'react-dom';
 import './Search.css';
 import Recipe from '../../pages/recipe/Recipe'
-
+{
+    // Search class component which send dish name as a props to Recipe.js page. 
+}
 class Search extends Component{
     constructor(){
         super();
         this.state = {
-            dish : ""
+            dish : "" //this variable store the dish name
         }
     }
     dishHandler = (e) =>{
-        this.setState({dish: e.target.value});
+        e.persist();
+        this.setState({dish: e.target.value}); // setting te dish name.
     }
     recipeHandler = () => {
-        ReactDOM.render(<Recipe  dish = {this.state.dish} />, document.getElementById('root'));
+        ReactDOM.render(<Recipe  dish = {this.state.dish} />, document.getElementById('root')); // Render to the Recipe page after clicking the ingredient button
     }
     render(){
         return(
             <div>
                 <div className='search'>
-                    {
-                        this.props.searchDish === 'true' ? <input className="searchBar" type="text" dish={this.state.dish} onChange={this.dishHandler} value={this.state.dish} /> : 
-                        <input type="text" className="searchBar" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
-                    }
-                    
-                    {
-                        //<input type="text" className="searchBar" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
-                    }
+                    <input type="text" className="searchBar" dish={this.state.dish} onChange={this.dishHandler}  placeholder="Enter the Name of the Dish" />
                     <button onClick={() => this.recipeHandler()}>Get Ingredients</button>
                 </div>
             </div>
