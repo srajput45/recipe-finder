@@ -8,12 +8,12 @@ class Recipe extends Component{
     constructor(){
         super();
         this.state = {
-            dataFound: 0, // It change to 1 when API has any data.
-            dishDetail: [{}], // It is use to store the data which we get from the API.
+            /*dataFound: 0, // It change to 1 when API has any data.
+            dishDetail: [{}], // It is use to store the data which we get from the API.*/
             color : 'black' // It is use to set the colour of the Heart. 
         }
     }
-    componentWillMount(){
+    /*componentWillMount(){
         //Making the http request.
         let data = null;
         let xhr = new XMLHttpRequest();
@@ -28,7 +28,7 @@ class Recipe extends Component{
         xhr.open("GET","https://cors-anywhere.herokuapp.com/https://www.themealdb.com/api/json/v1/1/search.php?s="+this.props.dish);
         xhr.setRequestHeader("Cache-Cotrol", "no-cache");
         xhr.send(data);
-    }
+    }*/
     nameClickHandler = (url) => {
         //It will go to the main recipe page.
         window.location = url;
@@ -47,10 +47,10 @@ class Recipe extends Component{
                     <Header />
                     <Search />
                     {
-                        this.state.dataFound === 1 ? // If the data found is 1 it will show the dish details.
+                        this.props.dataFound === 1 ? // If the data found is 1 it will show the dish details.
                             (<div className="details">
                             <div className='headding'>
-                                <span className='mealName' onClick={() => this.nameClickHandler(this.state.dishDetail.strSource)}>{this.state.dishDetail.strMeal}</span>
+                                <span className='mealName' onClick={() => this.nameClickHandler(this.props.dishDetail.strSource)}>{this.props.dishDetail.strMeal}</span>
                                 <div className='like'>
                                     {/* Like functionality */}
                                     <FavoriteBorderOutlinedIcon
@@ -61,14 +61,14 @@ class Recipe extends Component{
                             </div>
                             <div className='container'>
                                 <div className="left">{/* to Show thw image */}
-                                    <img src={this.state.dishDetail.strMealThumb} alt='Dish thumbnail' className='dishImage'/>
+                                    <img src={this.props.dishDetail.strMealThumb} alt='Dish thumbnail' className='dishImage'/>
                                 </div>
                                 <div className="right">{/* to show the other details */}
                                     <Typography>
-                                        <span className='bold' >Category of the meal - </span>{this.state.dishDetail.strCategory} 
+                                        <span className='bold' >Category of the meal - </span>{this.props.dishDetail.strCategory} 
                                     </Typography>
                                     <Typography>
-                                        <span className='bold' >Area of the meal - </span>{this.state.dishDetail.strArea} 
+                                        <span className='bold' >Area of the meal - </span>{this.props.dishDetail.strArea} 
                                     </Typography><br></br>
                                     <Typography>
                                         <span className='bold' >Ingredients</span>
@@ -76,19 +76,19 @@ class Recipe extends Component{
                                     <div className='ingredients'>{/* List of ingredient and their quantity */}
                                         <div className='ingName'>
                                             <ul>
-                                                {Object.keys(this.state.dishDetail).map((attr) => {
-                                                    return (attr.includes("strIngredient")) && (this.state.dishDetail[attr])
-                                                    &&   (this.state.dishDetail[attr] !== "")
-                                                    && <li key = {attr}>{this.state.dishDetail[attr]}</li>
+                                                {Object.keys(this.props.dishDetail).map((attr) => {
+                                                    return (attr.includes("strIngredient")) && (this.props.dishDetail[attr])
+                                                    &&   (this.props.dishDetail[attr] !== "")
+                                                    && <li key = {attr}>{this.props.dishDetail[attr]}</li>
                                                 })}
                                             </ul>
                                         </div>
                                         <div className='ingQuant'>
                                             <ul>
-                                                {Object.keys(this.state.dishDetail).map((attr) => {
-                                                    return (attr.includes("strMeasure")) && (this.state.dishDetail[attr])
-                                                    &&   (this.state.dishDetail[attr] !== "")
-                                                    && <li key = {attr}>{this.state.dishDetail[attr]}</li>
+                                                {Object.keys(this.props.dishDetail).map((attr) => {
+                                                    return (attr.includes("strMeasure")) && (this.props.dishDetail[attr])
+                                                    &&   (this.props.dishDetail[attr] !== "")
+                                                    && <li key = {attr}>{this.props.dishDetail[attr]}</li>
                                                 })}
                                             </ul>
                                         </div>
@@ -98,7 +98,7 @@ class Recipe extends Component{
                                             <span className='bold' >Recipes</span>
                                         </Typography>
                                         <p className='instructions'>
-                                            {this.state.dishDetail.strInstructions}
+                                            {this.props.dishDetail.strInstructions}
                                         </p>
                                     </div>
                                 </div>
